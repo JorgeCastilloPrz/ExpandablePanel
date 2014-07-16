@@ -7,21 +7,19 @@
     <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="10"
-        android:background="@android:color/darker_gray"
-        android:orientation="vertical">
+        android:background="@android:color/darker_gray">
 
         <ImageView
+            android:id="@+id/topLayout"
             android:background="@color/material_cyan"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"/>
+            android:layout_height="250dp" />
 
         <ImageView
             android:background="@color/material_pink"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="6"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/topLayout"/>
 
     </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
 
