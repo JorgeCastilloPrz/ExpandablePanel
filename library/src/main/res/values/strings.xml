@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExpandablePanel</string>
+    <string name="tag">ExpandablePanel</string>
+    <string name="wrong_number_children_error">Wrong children number. You must insert two children inside ExpandablePanelView in order to make it work.</string>
+</resources>
