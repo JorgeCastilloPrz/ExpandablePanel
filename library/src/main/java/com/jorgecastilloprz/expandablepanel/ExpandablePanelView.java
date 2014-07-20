@@ -2,6 +2,7 @@ package com.jorgecastilloprz.expandablepanel;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 
 import com.jorgecastilloprz.expandablepanel.anim.HeightAnimation;
+import com.jorgecastilloprz.expandablepanel.listeners.ExpandableListener;
 import com.jorgecastilloprz.expandablepanel.utils.DisplayUtils;
 
 /**
@@ -24,23 +26,38 @@ public class ExpandablePanelView extends RelativeLayout {
     private int initialTopLayoutHeight;
     private View topView;
 
+    private ExpandableListener expandableListener;
+
+    private float completionPercent;
+
     public ExpandablePanelView(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public ExpandablePanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public ExpandablePanelView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+
+        //Initial attrs
+        if (attrs != null) {
+            TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ExpandablePanelView, 0, 0);
+            try {
+                completionPercent = a.getFloat(R.attr.completionPercent, 0f);
+            } finally {
+                a.recycle();
+            }
+        }
+
         displayHeight = DisplayUtils.getDisplayHeight(getContext());
     }
 
@@ -48,10 +65,20 @@ public class ExpandablePanelView extends RelativeLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        checkChildrenCount();
+        if (initialTopLayoutHeight == 0 && topView == null)
+        {
+            checkChildrenCount();
+            initialTopLayoutHeight = getChildAt(0).getMeasuredHeight();
+            topView = getChildAt(0);
+        }
+    }
 
-        initialTopLayoutHeight = getChildAt(0).getMeasuredHeight();
-        topView = getChildAt(0);
+    /**
+     * Attachs the listener for expanding/shrinking events
+     * @param expandableListener
+     */
+    public void attachExpandableListener(ExpandableListener expandableListener) {
+        this.expandableListener = expandableListener;
     }
 
     /**
@@ -72,14 +99,15 @@ public class ExpandablePanelView extends RelativeLayout {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 lastY = (int) motionEvent.getY();
+
+                dispatchGenericMovementStarted();
+
                 break;
 
             case MotionEvent.ACTION_MOVE:
 
                 int currentY = (int) motionEvent.getY();
                 int diff = (currentY - lastY);
-
-                Log.d("ExpandablePanel", "Drag: " + currentY);
 
                 RelativeLayout.LayoutParams topLayoutParams = (RelativeLayout.LayoutParams) topView.getLayoutParams();
 
@@ -88,13 +116,13 @@ public class ExpandablePanelView extends RelativeLayout {
                 }
 
                 topView.setLayoutParams(topLayoutParams);
-
                 lastY = currentY;
+                dispatchOnTouchEvent(motionEvent);
                 break;
 
             case MotionEvent.ACTION_UP:
 
-                if (topView.getMeasuredHeight() > displayHeight * 3 / 4 && !expanded)
+                if (topView.getMeasuredHeight() > completionPercent && !expanded)
                     completeAnimationToFullHeight();
                 else
                     completeAnimationToInitialHeight();
@@ -109,14 +137,14 @@ public class ExpandablePanelView extends RelativeLayout {
      * de las vista de avatar y de mapa hasta que queden alineadas en la parte baja de la pantalla
      */
     private void completeAnimationToFullHeight() {
-        Log.d("ExpandablePanel", "topView MeasuredHeight" + topView.getMeasuredHeight());
         HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), displayHeight);
 
-        heightAnim.setDuration(200);
+        heightAnim.setDuration(1000);
         heightAnim.setInterpolator(new DecelerateInterpolator());
         topView.startAnimation(heightAnim);
 
         expanded = true;
+        dispatchGenericMovementFinished();
     }
 
     /**
@@ -124,7 +152,6 @@ public class ExpandablePanelView extends RelativeLayout {
      * avatar y mapa a su posicion inicial
      */
     private void completeAnimationToInitialHeight() {
-        Log.d("ExpandablePanel", "topView MeasuredHeight" + topView.getMeasuredHeight());
         HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), initialTopLayoutHeight);
 
         heightAnim.setDuration(200);
@@ -132,5 +159,62 @@ public class ExpandablePanelView extends RelativeLayout {
         topView.startAnimation(heightAnim);
 
         expanded = false;
+        dispatchGenericMovementFinished();
+    }
+
+    //Listener actions
+
+    private void dispatchGenericMovementStarted() {
+        if (!expanded)
+            dispatchExpandingStarted();
+        else
+            dispatchShrinkingStarted();
+    }
+
+    private void dispatchGenericMovementFinished() {
+        if (!expanded)
+            dispatchShrinkingFinished();
+        else
+            dispatchExpandingFinished();
+    }
+
+    /**
+     * This listener is dispatched when the expanding begins by the user
+     */
+    private void dispatchExpandingStarted() {
+        if (expandableListener != null)
+            expandableListener.onExpandingStarted();
+    }
+
+    /**
+     * This listener is dispatched when the expanding finishes
+     */
+    private void dispatchExpandingFinished() {
+        if (expandableListener != null)
+            expandableListener.onExpandingFinished();
+    }
+
+    /**
+     * This listener is dispatched when the shrink (collapse) begins
+     */
+    private void dispatchShrinkingStarted() {
+        if (expandableListener != null)
+            expandableListener.onShrinkStarted();
+    }
+
+    /**
+     * This listener is dispatched when the shrink (collapse) finishes
+     */
+    private void dispatchShrinkingFinished() {
+        if (expandableListener != null)
+            expandableListener.onShrinkFinished();
+    }
+
+    /**
+     * This listener is dispatched meanwhile the expanding movement is being produced
+     */
+    private void dispatchOnTouchEvent(MotionEvent motionEvent) {
+        if (expandableListener != null)
+            expandableListener.onExpandingTouchEvent(motionEvent);
     }
 }
