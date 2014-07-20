@@ -2,4 +2,8 @@
 <resources>
     <color name="material_pink">#e91e63</color>
     <color name="material_cyan">#00bcd4</color>
+    <color name="flat_orange">#E36517</color>
+    <color name="flat_orange_light">#f37427</color>
+    <color name="flat_orange_bright">#FFA064</color>
+    <color name="almost_white_bg">#FAFAFA</color>
 </resources>

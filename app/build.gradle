@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "expandablepanel.jorgecastilloprz.com.expandablepanel"
-        minSdkVersion Integer.parseInt(ANDROID_MIN_SDK)
+        minSdkVersion Integer.parseInt(ANDROID_SAMPLE_MIN_SDK)
         targetSdkVersion Integer.parseInt(project.ANDROID_TARGET_SDK_VERSION)
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.+'
     compile project(":library")
+    compile files ('libs/ nineoldandroids-2.4.0.jar')
 }
