@@ -29,7 +29,7 @@ public class ExpandablePanelView extends RelativeLayout {
 
     private float completionPercent;
     private int completeExpandAnimationSpeed;
-    private int completeShrinkAnimationSpeed;
+    private int completeShrinkAnimationSpeed; 
 
     public ExpandablePanelView(Context context) {
         super(context);
