@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 
 import com.jorgecastilloprz.expandablepanel.anim.HeightAnimation;
 import com.jorgecastilloprz.expandablepanel.listeners.ExpandableListener;
-import com.jorgecastilloprz.expandablepanel.utils.DisplayUtils;
 
 /**
  * Created by jorge on 16/07/14.
@@ -29,6 +28,8 @@ public class ExpandablePanelView extends RelativeLayout {
     private ExpandableListener expandableListener;
 
     private float completionPercent;
+    private int completeExpandAnimationSpeed;
+    private int completeShrinkAnimationSpeed;
 
     public ExpandablePanelView(Context context) {
         super(context);
@@ -50,15 +51,15 @@ public class ExpandablePanelView extends RelativeLayout {
 
         //Initial attrs
         if (attrs != null) {
-            TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ExpandablePanelView, 0, 0);
-            try {
-                completionPercent = a.getFloat(R.attr.completionPercent, 0f);
-            } finally {
-                a.recycle();
-            }
-        }
 
-        displayHeight = DisplayUtils.getDisplayHeight(getContext());
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ExpandablePanelView);
+
+            completionPercent = a.getFloat(R.styleable.ExpandablePanelView_completionPercent, 0.75f);
+            completeExpandAnimationSpeed = a.getInt(R.styleable.ExpandablePanelView_completeExpandAnimationSpeed, 200);
+            completeShrinkAnimationSpeed = a.getInt(R.styleable.ExpandablePanelView_completeShrinkAnimationSpeed, 200);
+
+            a.recycle();
+        }
     }
 
     @Override
@@ -68,6 +69,9 @@ public class ExpandablePanelView extends RelativeLayout {
         if (initialTopLayoutHeight == 0 && topView == null)
         {
             checkChildrenCount();
+
+            displayHeight = getMeasuredHeight();
+
             initialTopLayoutHeight = getChildAt(0).getMeasuredHeight();
             topView = getChildAt(0);
         }
@@ -122,7 +126,7 @@ public class ExpandablePanelView extends RelativeLayout {
 
             case MotionEvent.ACTION_UP:
 
-                if (topView.getMeasuredHeight() > completionPercent && !expanded)
+                if (topView.getMeasuredHeight() > displayHeight * completionPercent && !expanded)
                     completeAnimationToFullHeight();
                 else
                     completeAnimationToInitialHeight();
@@ -139,7 +143,7 @@ public class ExpandablePanelView extends RelativeLayout {
     private void completeAnimationToFullHeight() {
         HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), displayHeight);
 
-        heightAnim.setDuration(1000);
+        heightAnim.setDuration(completeExpandAnimationSpeed);
         heightAnim.setInterpolator(new DecelerateInterpolator());
         topView.startAnimation(heightAnim);
 
@@ -154,7 +158,7 @@ public class ExpandablePanelView extends RelativeLayout {
     private void completeAnimationToInitialHeight() {
         HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), initialTopLayoutHeight);
 
-        heightAnim.setDuration(200);
+        heightAnim.setDuration(completeShrinkAnimationSpeed);
         heightAnim.setInterpolator(new DecelerateInterpolator());
         topView.startAnimation(heightAnim);
 

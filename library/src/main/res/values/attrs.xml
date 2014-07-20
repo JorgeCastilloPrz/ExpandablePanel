@@ -2,5 +2,7 @@
 <resources>
     <declare-styleable name="ExpandablePanelView">
         <attr name="completionPercent" format="float" />
+        <attr name="completeExpandAnimationSpeed" format="integer" />
+        <attr name="completeShrinkAnimationSpeed" format="integer" />
     </declare-styleable>
 </resources>
