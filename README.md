@@ -1,7 +1,12 @@
 Expandable Panel Android Library
 ================================
-This Android library implements the expand by sliding logic for a top view in a two children view composition. It supports ``Android SDK 2.1 (Eclair)`` as minimum. 
 
+![Demo Screenshot 1][1]
+
+Details
+-------
+
+This Android library implements the expand by sliding logic for a top view in a two children view composition. It supports ``Android SDK 2.1 (Eclair)`` as minimum. 
 
 ExpandablePanel library brings a custom view class called `ExpandablePanelView` to the final user. It implements the needed logic for integrating the expandable logic into your own Android application.
 
@@ -60,4 +65,21 @@ Import ExpandablePanel dependency
 --------------------------------
 TBA - Deploy to maven central not completed atm.
 
+License
+-------
 
+    Copyright 2014 Pedro Vicente Gómez Sánchez
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+[1]: http://188.226.233.205/ExpandablePanel/sample.gif
