@@ -1,7 +1,7 @@
 Expandable Panel Android Library
 ================================
 
-![Demo Screenshot 1][1]
+![Demo Screenshot 1](https://github.com/JorgeCastilloPrz/ExpandablePanel/app/src/main/res/raw/sample.gif "Optional title")
 
 Details
 -------
