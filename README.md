@@ -68,7 +68,7 @@ TBA - Deploy to maven central not completed atm.
 License
 -------
 
-    Copyright 2014 Pedro Vicente Gómez Sánchez
+    Copyright 2014 Jorge Castillo Pérez
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
