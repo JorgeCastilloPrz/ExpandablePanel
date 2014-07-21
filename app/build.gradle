@@ -25,3 +25,5 @@ dependencies {
     compile project(":library")
     compile files ('libs/ nineoldandroids-2.4.0.jar')
 }
+
+apply from: '../maven_push.gradle'

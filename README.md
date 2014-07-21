@@ -62,8 +62,12 @@ In order to make it work, you will need to use `ExpandablePanelView` class into 
 </RelativeLayout>
 
 Import ExpandablePanel dependency
---------------------------------
-TBA - Deploy to maven central not completed atm.
+---------------------------------
+Add the next code to your build.gradle dependencies:
+
+    dependencies {
+        compile 'com.github.jorgecastilloprz:expandablepanel:1.0.0@aar'
+    }
 
 License
 -------
