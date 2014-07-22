@@ -63,13 +63,13 @@ In order to make it work, you will need to use `ExpandablePanelView` class into 
 
 Import ExpandablePanel dependency
 ---------------------------------
-* 1. Add the next code to your build.gradle project dependencies:
+Add the next code to your build.gradle project dependencies:
 
     dependencies {
         compile 'com.github.jorgecastilloprz:expandablepanel:1.0.0@aar'
     }
 
-* 1. Set the Sonatype repo into your project repositories located at external build.gradle:
+Set the Sonatype repo into the external build.gradle:
 
     allprojects {
         repositories {
