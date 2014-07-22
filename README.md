@@ -69,12 +69,20 @@ Add the next code to your build.gradle project dependencies:
         compile 'com.github.jorgecastilloprz:expandablepanel:1.0.0@aar'
     }
 
-Set the Sonatype repo into the external build.gradle:
+Set the mavenCentral repo into the external build.gradle:
 
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:0.12.+'
+        }
+    }
+    
     allprojects {
         repositories {
             mavenCentral()
-            maven { url "https://oss.sonatype.org/service/local/staging/deploy/maven2"}
         }
     }
 
