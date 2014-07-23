@@ -29,37 +29,47 @@ In order to make it work, you will need to use `ExpandablePanelView` class into 
 * 3. `ExpandablePanelView` extends `RelativeLayout`, so you will need to give an android id to the top view and setup the `android:below` attribute in the bottom one. 
 * 4. Set the `xmlns:draggable_view="http://schemas.android.com/apk/res-auto"` if you are going to use any of the cusom attributes.
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:expandablepanel="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+Code sample:
 
-    <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:expandablepanel="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
-        expandablepanel:completionPercent="0.8"
-        expandablepanel:completeExpandAnimationSpeed="150"
-        expandablepanel:completeShrinkAnimationSpeed="200">
+        tools:context=".MainActivity">
 
-        <ImageView
-            android:id="@+id/topLayout"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:src="@drawable/nightbackground"
-            android:scaleType="centerCrop"/>
-
-        <ImageView
-            android:background="@color/material_pink"
+        <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/topLayout"/>
+            android:background="@android:color/darker_gray"
+            expandablepanel:completionPercent="0.8"
+            expandablepanel:completeExpandAnimationSpeed="150"
+            expandablepanel:completeShrinkAnimationSpeed="200">
+    
+            <ImageView
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/nightbackground"
+                android:scaleType="centerCrop"/>
+    
+            <ImageView
+                android:background="@color/material_pink"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/topLayout"/>
+    
+        </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
 
-    </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
+    </RelativeLayout>
+    
+Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
 
-</RelativeLayout>
+* `onExpandingStarted`: Dispatched when the user starts expanding the view.
+* `onExpandingFinished`: Dispatched when autocomplete expanding animation is finished.
+* `onShrinkStarted`: Dispatched when the user starts shrinking the view.
+* `onShrinkFinished`: Dispatched when autocomplete shrinking animation is finished.
+* `onExpandingTouchEvent`: Dispatched meanwhile the user is dragging to expand or shrink the view. This one is very useful if you want to map touch coordinates to your class and be able to use them for creating cool combined animations.
 
 Import ExpandablePanel dependency
 ---------------------------------
