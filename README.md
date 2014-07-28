@@ -126,6 +126,15 @@ Set the mavenCentral repo into the external build.gradle:
         }
     }
 
+If you are using Maven, use the following code:
+
+    <dependency>
+      <groupId>com.github.jorgecastilloprz</groupId>
+      <artifactId>expandablepanel</artifactId>
+      <version>1.0.1</version>
+      <type>aar</type>
+    </dependency>
+
 License
 -------
 
