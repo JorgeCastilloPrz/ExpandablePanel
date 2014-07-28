@@ -8,10 +8,9 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 
-import com.jorgecastilloprz.expandablepanel.anim.HeightAnimation;
+import com.jorgecastilloprz.expandablepanel.controllers.AnimationController;
 import com.jorgecastilloprz.expandablepanel.listeners.ExpandableListener;
 
 /**
@@ -30,6 +29,10 @@ public class ExpandablePanelView extends RelativeLayout {
     private float completionPercent;
     private int completeExpandAnimationSpeed;
     private int completeShrinkAnimationSpeed;
+    private boolean beginExpanded;
+    private int bounceCount;
+
+    private AnimationController animationController;
 
     public ExpandablePanelView(Context context) {
         super(context);
@@ -57,6 +60,8 @@ public class ExpandablePanelView extends RelativeLayout {
             completionPercent = a.getFloat(R.styleable.ExpandablePanelView_completionPercent, 0.75f);
             completeExpandAnimationSpeed = a.getInt(R.styleable.ExpandablePanelView_completeExpandAnimationSpeed, 200);
             completeShrinkAnimationSpeed = a.getInt(R.styleable.ExpandablePanelView_completeShrinkAnimationSpeed, 200);
+            beginExpanded = a.getBoolean(R.styleable.ExpandablePanelView_beginExpanded, false);
+            bounceCount = a.getInteger(R.styleable.ExpandablePanelView_bounceCount, 2);
 
             a.recycle();
         }
@@ -74,6 +79,18 @@ public class ExpandablePanelView extends RelativeLayout {
 
             initialTopLayoutHeight = getChildAt(0).getMeasuredHeight();
             topView = getChildAt(0);
+
+            if (beginExpanded)
+                topView.getLayoutParams().height = displayHeight;
+
+            animationController = AnimationController.getInstance(displayHeight, topView);
+            playBounceAnimationIfNeeded();
+        }
+    }
+
+    private void playBounceAnimationIfNeeded() {
+        if (beginExpanded) {
+            animationController.playBounceAnimation(bounceCount);
         }
     }
 
@@ -127,43 +144,20 @@ public class ExpandablePanelView extends RelativeLayout {
             case MotionEvent.ACTION_UP:
 
                 if (topView.getMeasuredHeight() > displayHeight * completionPercent && !expanded)
-                    completeAnimationToFullHeight();
-                else
-                    completeAnimationToInitialHeight();
+                {
+                    animationController.completeAnimationToFullHeight(completeExpandAnimationSpeed);
+                    expanded = true;
+                    dispatchGenericMovementFinished();
+                }
+                else {
+                    animationController.completeAnimationToInitialHeight(completeShrinkAnimationSpeed, initialTopLayoutHeight);
+                    expanded = false;
+                    dispatchGenericMovementFinished();
+                }
 
                 break;
         }
         return true;
-    }
-
-    /**
-     * Anima la altura del topLayout hasta que ocupe la pantalla completa, y termina el desplazamiento
-     * de las vista de avatar y de mapa hasta que queden alineadas en la parte baja de la pantalla
-     */
-    private void completeAnimationToFullHeight() {
-        HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), displayHeight);
-
-        heightAnim.setDuration(completeExpandAnimationSpeed);
-        heightAnim.setInterpolator(new DecelerateInterpolator());
-        topView.startAnimation(heightAnim);
-
-        expanded = true;
-        dispatchGenericMovementFinished();
-    }
-
-    /**
-     * Anima la altura del topLayout para devolverla a su tamanyo inicial, y devuelve las vistas de
-     * avatar y mapa a su posicion inicial
-     */
-    private void completeAnimationToInitialHeight() {
-        HeightAnimation heightAnim = new HeightAnimation(topView, topView.getMeasuredHeight(), initialTopLayoutHeight);
-
-        heightAnim.setDuration(completeShrinkAnimationSpeed);
-        heightAnim.setInterpolator(new DecelerateInterpolator());
-        topView.startAnimation(heightAnim);
-
-        expanded = false;
-        dispatchGenericMovementFinished();
     }
 
     //Listener actions
@@ -220,5 +214,14 @@ public class ExpandablePanelView extends RelativeLayout {
     private void dispatchOnTouchEvent(MotionEvent motionEvent) {
         if (expandableListener != null)
             expandableListener.onExpandingTouchEvent(motionEvent);
+    }
+
+    /**
+     * Used to disable bounce animation arbitrarily
+     * (For example, if the user touchs the screen, he might not want to see the bounce anymore)
+     * @param bounceEnabled
+     */
+    public void setBounceEnabled(boolean bounceEnabled) {
+        animationController.setBounceEnabled(bounceEnabled);
     }
 }

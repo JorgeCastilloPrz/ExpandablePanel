@@ -12,7 +12,8 @@
         android:background="@android:color/darker_gray"
         expandablepanel:completionPercent="0.8"
         expandablepanel:completeExpandAnimationSpeed="150"
-        expandablepanel:completeShrinkAnimationSpeed="200">
+        expandablepanel:completeShrinkAnimationSpeed="200"
+        expandablepanel:beginExpanded="true">
 
         <ImageView
             android:id="@+id/topLayout"

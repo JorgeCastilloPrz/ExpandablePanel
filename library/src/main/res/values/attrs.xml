@@ -4,5 +4,7 @@
         <attr name="completionPercent" format="float" />
         <attr name="completeExpandAnimationSpeed" format="integer" />
         <attr name="completeShrinkAnimationSpeed" format="integer" />
+        <attr name="beginExpanded" format="boolean" />
+        <attr name="bounceCount" format="integer" />
     </declare-styleable>
 </resources>
