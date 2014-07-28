@@ -83,47 +83,14 @@ Begin expanded code sample
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:src="@drawable/nightbackground"
-            android:scaleType="centerCrop" />
-    
-        <LinearLayout
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:background="@color/material_pink"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/topLayout"
-            android:orientation="vertical"
-            android:background="@color/flat_orange">
-    
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/flat_orange_bright" />
-    
-            <TextView
-                android:id="@+id/userName"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/user_name"
-                android:textSize="@dimen/title_size"
-                android:layout_margin="@dimen/bottom_layout_margin" />
-    
-            <LinearLayout
-                android:background="@color/flat_orange_light"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-    
-                <TextView
-                    android:id="@+id/userDetails"
-                    android:textColor="@android:color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_details"
-                    android:textSize="@dimen/details_size"
-                    android:layout_margin="@dimen/bottom_layout_margin" />
-    
-            </LinearLayout>
-    
-        </LinearLayout>
-    
+            android:layout_below="@+id/topLayout"/>
+        
     </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
     
 Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
@@ -139,7 +106,7 @@ Import ExpandablePanel dependency
 Add the next code to your build.gradle project dependencies:
 
     dependencies {
-        compile 'com.github.jorgecastilloprz:expandablepanel:1.0.0@aar'
+        compile 'com.github.jorgecastilloprz:expandablepanel:1.0.1@aar'
     }
 
 Set the mavenCentral repo into the external build.gradle:
