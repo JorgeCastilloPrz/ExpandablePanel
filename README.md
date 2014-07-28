@@ -18,6 +18,8 @@ ExpandablePanel lib allows you to customize the following properties:
 * `expandablepanel:completionPercent`: % of the parent's height where you want the autocomplete animation to begin working.
 * `expandablepanel:completeExpandAnimationSpeed`: Speed for the autocomplete animation.
 * `expandablepanel:completeShrinkAnimationSpeed`: Speed for the autoshrink animation.
+* `expandablepanel:beginExpanded`: Use it if you need the topView to begin expanded. If that's your case, the view will play a bounce animation at start to inform the user about the hidden bottom view.
+* `expandablepanel:bounceCount`: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
 
 Usage
 -----
@@ -62,6 +64,67 @@ Code sample:
         </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
 
     </RelativeLayout>
+    
+Begin expanded code sample
+
+    <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
+            android:id="@+id/expandablePanelView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            expandablepanel:completionPercent="0.8"
+            expandablepanel:completeExpandAnimationSpeed="150"
+            expandablepanel:completeShrinkAnimationSpeed="200"
+            expandablepanel:beginExpanded="true"
+            expandablepanel:bounceCount="2">
+    
+        <ImageView
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/nightbackground"
+            android:scaleType="centerCrop" />
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/topLayout"
+            android:orientation="vertical"
+            android:background="@color/flat_orange">
+    
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/flat_orange_bright" />
+    
+            <TextView
+                android:id="@+id/userName"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_name"
+                android:textSize="@dimen/title_size"
+                android:layout_margin="@dimen/bottom_layout_margin" />
+    
+            <LinearLayout
+                android:background="@color/flat_orange_light"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    
+                <TextView
+                    android:id="@+id/userDetails"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_details"
+                    android:textSize="@dimen/details_size"
+                    android:layout_margin="@dimen/bottom_layout_margin" />
+    
+            </LinearLayout>
+    
+        </LinearLayout>
+    
+    </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
     
 Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
 
