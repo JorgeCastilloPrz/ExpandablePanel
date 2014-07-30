@@ -1,7 +1,5 @@
 package expandablepanel.jorgecastilloprz.com.expandablepanel;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import com.jorgecastilloprz.expandablepanel.ExpandablePanelView;
@@ -41,7 +38,6 @@ public class MainActivity extends ActionBarActivity implements ExpandableListene
         userName.setTypeface(robotoThin);
         userDetails.setTypeface(robotoLight);
 
-        avatar = findViewById(R.id.avatar);
         expandablePanelView = (ExpandablePanelView) findViewById(R.id.expandablePanelView);
 
         expandablePanelView.attachExpandableListener(this);
@@ -68,10 +64,7 @@ public class MainActivity extends ActionBarActivity implements ExpandableListene
 
     @Override
     public void onExpandingFinished() {
-        ValueAnimator avatarAnim = ObjectAnimator.ofFloat(avatar, "alpha", 1, 0, 0);
-        avatarAnim.setDuration(1000).setInterpolator(new DecelerateInterpolator());
 
-        avatarAnim.start();
     }
 
     @Override
@@ -80,10 +73,7 @@ public class MainActivity extends ActionBarActivity implements ExpandableListene
 
     @Override
     public void onShrinkFinished() {
-        ValueAnimator avatarAnim = ObjectAnimator.ofFloat(avatar, "alpha", 0, 1, 1);
-        avatarAnim.setDuration(1000).setInterpolator(new DecelerateInterpolator());
 
-        avatarAnim.start();
     }
 
     @Override

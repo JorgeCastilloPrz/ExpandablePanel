@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.jorgecastilloprz.expandablepanel.controllers.AnimationController;
+import com.jorgecastilloprz.expandablepanel.controllers.strategy.BasicAnimationStrategy;
+import com.jorgecastilloprz.expandablepanel.controllers.strategy.InverseAnimationStrategy;
 import com.jorgecastilloprz.expandablepanel.listeners.ExpandableListener;
 
 /**
@@ -21,8 +23,8 @@ public class ExpandablePanelView extends RelativeLayout {
     private int lastY;
     private int displayHeight;
     private boolean expanded;
-    private int initialTopLayoutHeight;
-    private View topView;
+    private int initialAnimableViewHeight;
+    private View animableView;
 
     private ExpandableListener expandableListener;
 
@@ -31,6 +33,7 @@ public class ExpandablePanelView extends RelativeLayout {
     private int completeShrinkAnimationSpeed;
     private boolean beginExpanded;
     private int bounceCount;
+    private boolean invertBehavior;
 
     private AnimationController animationController;
 
@@ -62,6 +65,7 @@ public class ExpandablePanelView extends RelativeLayout {
             completeShrinkAnimationSpeed = a.getInt(R.styleable.ExpandablePanelView_completeShrinkAnimationSpeed, 200);
             beginExpanded = a.getBoolean(R.styleable.ExpandablePanelView_beginExpanded, false);
             bounceCount = a.getInteger(R.styleable.ExpandablePanelView_bounceCount, 2);
+            invertBehavior = a.getBoolean(R.styleable.ExpandablePanelView_invertBehavior, false);
 
             a.recycle();
         }
@@ -71,19 +75,30 @@ public class ExpandablePanelView extends RelativeLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        if (initialTopLayoutHeight == 0 && topView == null)
+        //Just first time
+        if (initialAnimableViewHeight == 0 && animableView == null)
         {
             checkChildrenCount();
 
             displayHeight = getMeasuredHeight();
 
-            initialTopLayoutHeight = getChildAt(0).getMeasuredHeight();
-            topView = getChildAt(0);
+            if (!invertBehavior)
+                animableView = getChildAt(0);
+            else
+                animableView = getChildAt(1);
+
+            initialAnimableViewHeight = animableView.getMeasuredHeight();
 
             if (beginExpanded)
-                topView.getLayoutParams().height = displayHeight;
+                animableView.getLayoutParams().height = displayHeight;
 
-            animationController = AnimationController.getInstance(displayHeight, topView);
+            animationController = AnimationController.getInstance(displayHeight, animableView);
+
+            if (!invertBehavior)
+                animationController.setAnimationStrategy(new BasicAnimationStrategy(displayHeight, animableView));
+            else
+                animationController.setAnimationStrategy(new InverseAnimationStrategy(displayHeight, animableView));
+
             playBounceAnimationIfNeeded();
         }
     }
@@ -130,27 +145,22 @@ public class ExpandablePanelView extends RelativeLayout {
                 int currentY = (int) motionEvent.getY();
                 int diff = (currentY - lastY);
 
-                RelativeLayout.LayoutParams topLayoutParams = (RelativeLayout.LayoutParams) topView.getLayoutParams();
+                animationController.updateAnimableViewHeight(animableView, initialAnimableViewHeight, diff);
 
-                if (topLayoutParams.height >= initialTopLayoutHeight) {
-                    topLayoutParams.height += diff;
-                }
-
-                topView.setLayoutParams(topLayoutParams);
                 lastY = currentY;
                 dispatchOnTouchEvent(motionEvent);
                 break;
 
             case MotionEvent.ACTION_UP:
 
-                if (topView.getMeasuredHeight() > displayHeight * completionPercent && !expanded)
+                if (animableView.getMeasuredHeight() > displayHeight * completionPercent && !expanded)
                 {
                     animationController.completeAnimationToFullHeight(completeExpandAnimationSpeed);
                     expanded = true;
                     dispatchGenericMovementFinished();
                 }
                 else {
-                    animationController.completeAnimationToInitialHeight(completeShrinkAnimationSpeed, initialTopLayoutHeight);
+                    animationController.completeAnimationToInitialHeight(completeShrinkAnimationSpeed, initialAnimableViewHeight);
                     expanded = false;
                     dispatchGenericMovementFinished();
                 }

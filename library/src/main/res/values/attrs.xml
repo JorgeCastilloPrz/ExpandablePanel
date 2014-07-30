@@ -6,5 +6,6 @@
         <attr name="completeShrinkAnimationSpeed" format="integer" />
         <attr name="beginExpanded" format="boolean" />
         <attr name="bounceCount" format="integer" />
+        <attr name="invertBehavior" format="boolean" />
     </declare-styleable>
 </resources>

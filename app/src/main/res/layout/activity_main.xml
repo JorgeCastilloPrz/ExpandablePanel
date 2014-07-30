@@ -13,21 +13,22 @@
         expandablepanel:completionPercent="0.8"
         expandablepanel:completeExpandAnimationSpeed="150"
         expandablepanel:completeShrinkAnimationSpeed="200"
-        expandablepanel:beginExpanded="true"
-        expandablepanel:bounceCount="2">
+        expandablepanel:invertBehavior="true">
 
         <ImageView
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="match_parent"
             android:src="@drawable/nightbackground"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_above="@+id/bottomLayout"/>
 
         <LinearLayout
+            android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/topLayout"
+            android:layout_height="250dp"
             android:orientation="vertical"
+            android:layout_alignParentBottom="true"
             android:background="@color/flat_orange">
 
             <View
@@ -63,18 +64,5 @@
         </LinearLayout>
 
     </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:gravity="center">
-
-        <expandablepanel.jorgecastilloprz.com.expandablepanel.components.CircledImageView
-            android:id="@+id/avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/avatar" />
-
-    </LinearLayout>
 
 </RelativeLayout>
