@@ -6,10 +6,15 @@ Expandable Panel Android Library
 ![Demo Screenshot 3](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample3.gif)
 ![Demo Screenshot 4](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample4.gif)
 
+Check ExpandablePanel Demo application on GooglePlay:
+<a href="https://play.google.com/store/apps/details?id=expandablepanel.jorgecastilloprz.com.expandablepanel">
+  <img alt="Get it on Google Play" src="/images/brand/en_generic_rgb_wo_60.png" />
+</a>
+
 Details
 -------
 
-This Android library implements the expand by sliding logic for a top view in a two children view composition. It supports ``Android SDK 2.1 (Eclair)`` as minimum. 
+This Android library implements the expand by sliding logic for a top or a bottom view in a two children view composition. It supports ``Android SDK 2.1 (Eclair)`` as minimum. 
 
 ExpandablePanel library brings a custom view class called `ExpandablePanelView` to the final user. It implements the needed logic for integrating the expandable logic into your own Android application.
 
