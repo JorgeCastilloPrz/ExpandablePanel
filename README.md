@@ -23,12 +23,12 @@ Custom Attributes
 
 ExpandablePanel lib allows you to customize the following properties. Feel free to combine them to create cool user interfaces:
 
-* `expandablepanel:completionPercent`: % of the parent's height where you want the autocomplete animation to begin working.
-* `expandablepanel:completeExpandAnimationSpeed`: Speed for the autocomplete animation.
-* `expandablepanel:completeShrinkAnimationSpeed`: Speed for the autoshrink animation.
-* `expandablepanel:beginExpanded`: Use it if you need the topView to begin expanded. If that's your case, the view will play a bounce animation at start to inform the user about the hidden bottom view.
-* `expandablepanel:bounceCount`: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
-* `expandablepanel:invertBehavior`: Use it to invert the panel's behaviour and make bottomView become the expandable one. You can combine it with any other custom attributes. Bounce animation will get inverted too when using this attr.
+* ```expandablepanel:completionPercent```: % of the parent's height where you want the autocomplete animation to begin working.
+* ```expandablepanel:completeExpandAnimationSpeed```: Speed for the autocomplete animation.
+* ```expandablepanel:completeShrinkAnimationSpeed```: Speed for the autoshrink animation.
+* ```expandablepanel:beginExpanded```: Use it if you need the topView to begin expanded. If that's your case, the view will play a bounce animation at start to inform the user about the hidden bottom view.
+* ```expandablepanel:bounceCount```: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
+* ```expandablepanel:invertBehavior```: Use it to invert the panel's behaviour and make bottomView become the expandable one. You can combine it with any other custom attributes. Bounce animation will get inverted too when using this attr.
 
 Usage
 -----
