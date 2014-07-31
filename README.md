@@ -229,7 +229,6 @@ If you are using Maven, use the following code:
 
 Developer
 ---------
-
 * Jorge Castillo Pérez <jorge.castillo.prz@gmail.com>
 * Twitter acc - @JorgeCastilloPr (https://twitter.com/jorgecastillopr)
 
