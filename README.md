@@ -6,7 +6,7 @@ Expandable Panel Android Library
 ![Demo Screenshot 3](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample3.gif)
 ![Demo Screenshot 4](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample4.gif)
 
-Check ExpandablePanel Demo application on GooglePlay:
+Check ExpandablePanel Demo application on GooglePlay:<br />
 <a target="_blank" href="https://play.google.com/store/apps/details?id=expandablepanel.jorgecastilloprz.com.expandablepanel">
   <img alt="Get it on Google Play" src="https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/en_generic_rgb_wo_60.png" />
 </a>
