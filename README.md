@@ -53,41 +53,43 @@ Use `ExpandableListener` if you want your class to be able to get expandable cal
 Basic Usage
 -----------
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:expandablepanel="http://schemas.android.com/apk/res-auto"
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:expandablepanel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:background="@android:color/darker_gray"
+        expandablepanel:completionPercent="0.8"
+        expandablepanel:completeExpandAnimationSpeed="150"
+        expandablepanel:completeShrinkAnimationSpeed="200">
 
-        <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
+        <ImageView
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/nightbackground"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:background="@color/material_pink"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"
-            expandablepanel:completionPercent="0.8"
-            expandablepanel:completeExpandAnimationSpeed="150"
-            expandablepanel:completeShrinkAnimationSpeed="200">
-    
-            <ImageView
-                android:id="@+id/topLayout"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/nightbackground"
-                android:scaleType="centerCrop"/>
-    
-            <ImageView
-                android:background="@color/material_pink"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/topLayout"/>
-    
-        </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
+            android:layout_below="@+id/topLayout"/>
 
-    </RelativeLayout>
+    </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
+
+</RelativeLayout>
+ ```
     
 Begin Expanded Usage:
 ---------------------
-
+```xml
     <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
             android:id="@+id/expandablePanelView"
             android:layout_width="match_parent"
@@ -113,7 +115,7 @@ Begin Expanded Usage:
             android:layout_below="@+id/topLayout"/>
         
     </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
-    
+```
     
 Invert Behaviour Usage:
 -----------------------
