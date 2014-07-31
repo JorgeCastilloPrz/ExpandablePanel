@@ -6,4 +6,5 @@
     <color name="flat_orange_light">#f37427</color>
     <color name="flat_orange_bright">#FFA064</color>
     <color name="almost_white_bg">#FAFAFA</color>
+    <color name="dark_gray_bg">#2E2E2E</color>
 </resources>

@@ -1,4 +1,4 @@
-package expandablepanel.jorgecastilloprz.com.expandablepanel.components;
+package expandablepanel.jorgecastilloprz.com.expandablepanel.ui.components;
 
 import android.content.Context;
 import android.graphics.Bitmap;

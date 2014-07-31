@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fragment_names">
+        <item>Basic behaviour</item>
+        <item>Basic expanded</item>
+        <item>Inverse behaviour</item>
+        <item>Inverse expanded</item>
+    </string-array>
+</resources>

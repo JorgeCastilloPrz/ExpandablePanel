@@ -13,13 +13,14 @@ ExpandablePanel library brings a custom view class called `ExpandablePanelView` 
 Custom Attributes
 -------------
 
-ExpandablePanel lib allows you to customize the following properties:
+ExpandablePanel lib allows you to customize the following properties. Feel free to combine them to create cool user interfaces:
 
 * `expandablepanel:completionPercent`: % of the parent's height where you want the autocomplete animation to begin working.
 * `expandablepanel:completeExpandAnimationSpeed`: Speed for the autocomplete animation.
 * `expandablepanel:completeShrinkAnimationSpeed`: Speed for the autoshrink animation.
 * `expandablepanel:beginExpanded`: Use it if you need the topView to begin expanded. If that's your case, the view will play a bounce animation at start to inform the user about the hidden bottom view.
 * `expandablepanel:bounceCount`: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
+* `expandablepanel:invertBehavior`: Use it to invert the panel's behaviour and make bottomView become the expandable one. You can combine it with any other custom attributes. Bounce animation will get inverted too when using this attr.
 
 Usage
 -----
@@ -31,7 +32,8 @@ In order to make it work, you will need to use `ExpandablePanelView` class into 
 * 3. `ExpandablePanelView` extends `RelativeLayout`, so you will need to give an android id to the top view and setup the `android:below` attribute in the bottom one. 
 * 4. Set the `xmlns:draggable_view="http://schemas.android.com/apk/res-auto"` if you are going to use any of the cusom attributes.
 
-Code sample:
+Basic Usage
+-----------
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -65,7 +67,8 @@ Code sample:
 
     </RelativeLayout>
     
-Begin expanded code sample
+Begin Expanded Usage:
+---------------------
 
     <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
             android:id="@+id/expandablePanelView"
@@ -93,6 +96,81 @@ Begin expanded code sample
         
     </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
     
+    
+Invert Behaviour Usage:
+-----------------------
+
+
+* You will need to remove `android:layout_below` from bottomView and add `android:layout_above` to the top one, in order to make Android capable of setting `fixed bottomView height` before topView `match_parent` height. 
+* You must set `android:layout_alignParentBottom="true"` in bottom view too.
+    
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:expandablepanel="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+    
+        <com.jorgecastilloprz.expandablepanel.ExpandablePanelView
+            android:id="@+id/expandablePanelView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            expandablepanel:completionPercent="0.8"
+            expandablepanel:completeExpandAnimationSpeed="150"
+            expandablepanel:completeShrinkAnimationSpeed="200"
+            expandablepanel:invertBehavior="true">
+    
+            <RelativeLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomLayout">
+    
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="100">
+    
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="99"
+                        android:src="@drawable/nightbackground"
+                        android:scaleType="centerCrop"/>
+    
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/flat_orange_bright" />
+    
+                </LinearLayout>
+    
+                <expandablepanel.jorgecastilloprz.com.expandablepanel.ui.components.CircledImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/avatar"
+                    android:layout_centerInParent="true"/>
+    
+    
+            </RelativeLayout>
+    
+            <ImageView
+                android:id="@+id/bottomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/daybackground"
+                android:scaleType="centerCrop"
+                android:layout_alignParentBottom="true"/>
+    
+        </com.jorgecastilloprz.expandablepanel.ExpandablePanelView>
+    
+    </RelativeLayout>
+
+    
 Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
 
 * `onExpandingStarted`: Dispatched when the user starts expanding the view.
@@ -106,7 +184,7 @@ Import ExpandablePanel dependency
 Add the next code to your build.gradle project dependencies:
 
     dependencies {
-        compile 'com.github.jorgecastilloprz:expandablepanel:1.0.1@aar'
+        compile 'com.github.jorgecastilloprz:expandablepanel:1.0.2@aar'
     }
 
 Set the mavenCentral repo into the external build.gradle:
@@ -131,7 +209,7 @@ If you are using Maven, use the following code:
     <dependency>
       <groupId>com.github.jorgecastilloprz</groupId>
       <artifactId>expandablepanel</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <type>aar</type>
     </dependency>
 
