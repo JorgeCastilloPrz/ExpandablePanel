@@ -32,6 +32,16 @@ In order to make it work, you will need to use `ExpandablePanelView` class into 
 * 3. `ExpandablePanelView` extends `RelativeLayout`, so you will need to give an android id to the top view and setup the `android:below` attribute in the bottom one. 
 * 4. Set the `xmlns:draggable_view="http://schemas.android.com/apk/res-auto"` if you are going to use any of the cusom attributes.
 
+  
+Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
+
+* `onExpandingStarted`: Dispatched when the user starts expanding the view.
+* `onExpandingFinished`: Dispatched when autocomplete expanding animation is finished.
+* `onShrinkStarted`: Dispatched when the user starts shrinking the view.
+* `onShrinkFinished`: Dispatched when autocomplete shrinking animation is finished.
+* `onExpandingTouchEvent`: Dispatched meanwhile the user is dragging to expand or shrink the view. This one is very useful if you want to map touch coordinates to your class and be able to use them for creating cool combined animations.
+
+
 Basic Usage
 -----------
 
@@ -170,14 +180,6 @@ Invert Behaviour Usage:
     
     </RelativeLayout>
 
-    
-Use `ExpandableListener` if you want your class to be able to get expandable callbacks. Following methods are offered to the user:
-
-* `onExpandingStarted`: Dispatched when the user starts expanding the view.
-* `onExpandingFinished`: Dispatched when autocomplete expanding animation is finished.
-* `onShrinkStarted`: Dispatched when the user starts shrinking the view.
-* `onShrinkFinished`: Dispatched when autocomplete shrinking animation is finished.
-* `onExpandingTouchEvent`: Dispatched meanwhile the user is dragging to expand or shrink the view. This one is very useful if you want to map touch coordinates to your class and be able to use them for creating cool combined animations.
 
 Import ExpandablePanel dependency
 ---------------------------------
