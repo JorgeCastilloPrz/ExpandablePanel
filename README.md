@@ -226,6 +226,13 @@ If you are using Maven, use the following code:
   <type>aar</type>
 </dependency>
 ```
+
+Developer
+---------
+
+* Jorge Castillo Pérez <jorge.castillo.prz@gmail.com>
+* Twitter acc - @JorgeCastilloPr (https://twitter.com/jorgecastillopr)
+
 License
 -------
 
