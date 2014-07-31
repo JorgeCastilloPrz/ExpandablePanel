@@ -1,7 +1,10 @@
 Expandable Panel Android Library
 ================================
 
-![Demo Screenshot 1](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample.gif)
+![Demo Screenshot 1](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample1.gif)
+![Demo Screenshot 2](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample2.gif)
+![Demo Screenshot 3](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample3.gif)
+![Demo Screenshot 4](https://raw.githubusercontent.com/JorgeCastilloPrz/ExpandablePanel/master/app/src/main/res/raw/sample4.gif)
 
 Details
 -------
@@ -232,4 +235,7 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[1]: http://188.226.233.205/ExpandablePanel/sample.gif
+[1]: http://188.226.233.205/ExpandablePanel/sample1.gif
+[2]: http://188.226.233.205/ExpandablePanel/sample2.gif
+[3]: http://188.226.233.205/ExpandablePanel/sample3.gif
+[4]: http://188.226.233.205/ExpandablePanel/sample4.gif
