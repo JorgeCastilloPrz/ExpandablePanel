@@ -29,6 +29,7 @@ ExpandablePanel lib allows you to customize the following properties. Feel free 
 * ```expandablepanel:beginExpanded```: Use it if you need the topView to begin expanded. If that's your case, the view will play a bounce animation at start to inform the user about the hidden bottom view.
 * ```expandablepanel:bounceCount```: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
 * ```expandablepanel:invertBehavior```: Use it to invert the panel's behaviour and make bottomView become the expandable one. You can combine it with any other custom attributes. Bounce animation will get inverted too when using this attr.
+* ```expandablepanel:animableViewId```: Use it to assign an animable view using the view identifier if your ```ExpandablePanelView``` contains more than 2 child. This attribute is not mandatory, if you don't use it, first or second child (based on the ```expandablepanel:invertBehavior``` attribute) is going to be used as the animable view.
 
 Usage
 -----
