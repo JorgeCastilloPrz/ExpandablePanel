@@ -105,8 +105,11 @@ public class ExpandablePanelView extends RelativeLayout {
     }
 
     private void assignAnimableView() {
-        if(animableViewId==DEFAULT_ANIMABLE_VIEW_ID){
+        if(animableViewId != DEFAULT_ANIMABLE_VIEW_ID){
             animableView = findViewById(animableViewId);
+            if(animableView == null){
+                throw new IllegalArgumentException("Review your layout, you don't have a child of " + "ExpandablePanelView view with id " + animableViewId);
+            }
         }else {
             if (!invertBehavior)
                 animableView = getChildAt(0);
