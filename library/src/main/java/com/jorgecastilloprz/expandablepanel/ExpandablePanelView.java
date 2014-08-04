@@ -69,7 +69,7 @@ public class ExpandablePanelView extends RelativeLayout {
             beginExpanded = a.getBoolean(R.styleable.ExpandablePanelView_beginExpanded, false);
             bounceCount = a.getInteger(R.styleable.ExpandablePanelView_bounceCount, 2);
             invertBehavior = a.getBoolean(R.styleable.ExpandablePanelView_invertBehavior, false);
-            animableViewId = a.getResourceId(R.styleable.ExpandablePanelView_animableViewId,DEFAULT_ANIMABLE_VIEW_ID);
+            animableViewId = a.getResourceId(R.styleable.ExpandablePanelView_animableViewId, DEFAULT_ANIMABLE_VIEW_ID);
 
             a.recycle();
         }
@@ -80,8 +80,7 @@ public class ExpandablePanelView extends RelativeLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         //Just first time
-        if (initialAnimableViewHeight == 0 && animableView == null)
-        {
+        if (initialAnimableViewHeight == 0 && animableView == null) {
             checkChildrenCount();
 
             displayHeight = getMeasuredHeight();
@@ -105,12 +104,12 @@ public class ExpandablePanelView extends RelativeLayout {
     }
 
     private void assignAnimableView() {
-        if(animableViewId != DEFAULT_ANIMABLE_VIEW_ID){
+        if (animableViewId != DEFAULT_ANIMABLE_VIEW_ID) {
             animableView = findViewById(animableViewId);
-            if(animableView == null){
+            if (animableView == null) {
                 throw new IllegalArgumentException("Review your layout, you don't have a child of " + "ExpandablePanelView view with id " + animableViewId);
             }
-        }else {
+        } else {
             if (!invertBehavior)
                 animableView = getChildAt(0);
             else
@@ -126,6 +125,7 @@ public class ExpandablePanelView extends RelativeLayout {
 
     /**
      * Attachs the listener for expanding/shrinking events
+     *
      * @param expandableListener
      */
     public void attachExpandableListener(ExpandableListener expandableListener) {
@@ -168,13 +168,11 @@ public class ExpandablePanelView extends RelativeLayout {
 
             case MotionEvent.ACTION_UP:
 
-                if (animableView.getMeasuredHeight() > displayHeight * completionPercent && !expanded)
-                {
+                if (animableView.getMeasuredHeight() > displayHeight * completionPercent && !expanded) {
                     animationController.completeAnimationToFullHeight(completeExpandAnimationSpeed);
                     expanded = true;
                     dispatchGenericMovementFinished();
-                }
-                else {
+                } else {
                     animationController.completeAnimationToInitialHeight(completeShrinkAnimationSpeed, initialAnimableViewHeight);
                     expanded = false;
                     dispatchGenericMovementFinished();
@@ -244,6 +242,7 @@ public class ExpandablePanelView extends RelativeLayout {
     /**
      * Used to disable bounce animation arbitrarily
      * (For example, if the user touchs the screen, he might not want to see the bounce anymore)
+     *
      * @param bounceEnabled
      */
     public void setBounceEnabled(boolean bounceEnabled) {
