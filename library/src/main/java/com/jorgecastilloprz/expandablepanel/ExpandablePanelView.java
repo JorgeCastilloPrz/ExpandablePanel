@@ -20,6 +20,8 @@ import com.jorgecastilloprz.expandablepanel.listeners.ExpandableListener;
  */
 public class ExpandablePanelView extends RelativeLayout {
 
+    private static final int DEFAULT_ANIMABLE_VIEW_ID = -1;
+
     private int lastY;
     private int displayHeight;
     private boolean expanded;
@@ -34,6 +36,7 @@ public class ExpandablePanelView extends RelativeLayout {
     private boolean beginExpanded;
     private int bounceCount;
     private boolean invertBehavior;
+    private int animableViewId;
 
     private AnimationController animationController;
 
@@ -66,6 +69,7 @@ public class ExpandablePanelView extends RelativeLayout {
             beginExpanded = a.getBoolean(R.styleable.ExpandablePanelView_beginExpanded, false);
             bounceCount = a.getInteger(R.styleable.ExpandablePanelView_bounceCount, 2);
             invertBehavior = a.getBoolean(R.styleable.ExpandablePanelView_invertBehavior, false);
+            animableViewId = a.getResourceId(R.styleable.ExpandablePanelView_animableViewId,DEFAULT_ANIMABLE_VIEW_ID);
 
             a.recycle();
         }
@@ -82,10 +86,7 @@ public class ExpandablePanelView extends RelativeLayout {
 
             displayHeight = getMeasuredHeight();
 
-            if (!invertBehavior)
-                animableView = getChildAt(0);
-            else
-                animableView = getChildAt(1);
+            assignAnimableView();
 
             initialAnimableViewHeight = animableView.getMeasuredHeight();
 
@@ -100,6 +101,17 @@ public class ExpandablePanelView extends RelativeLayout {
                 animationController.setAnimationStrategy(new InverseAnimationStrategy(displayHeight, animableView));
 
             playBounceAnimationIfNeeded();
+        }
+    }
+
+    private void assignAnimableView() {
+        if(animableViewId==DEFAULT_ANIMABLE_VIEW_ID){
+            animableView = findViewById(animableViewId);
+        }else {
+            if (!invertBehavior)
+                animableView = getChildAt(0);
+            else
+                animableView = getChildAt(1);
         }
     }
 
