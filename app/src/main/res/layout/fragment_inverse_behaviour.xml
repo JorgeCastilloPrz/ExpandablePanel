@@ -13,7 +13,8 @@
         expandablepanel:completionPercent="0.8"
         expandablepanel:completeExpandAnimationSpeed="150"
         expandablepanel:completeShrinkAnimationSpeed="200"
-        expandablepanel:invertBehavior="true">
+        expandablepanel:invertBehavior="true"
+        expandablepanel:animableViewId="@+id/bottomLayout" >
 
         <RelativeLayout
             android:id="@+id/topLayout"
