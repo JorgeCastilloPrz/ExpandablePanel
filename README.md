@@ -14,7 +14,8 @@ Check ExpandablePanel Demo application on GooglePlay:<br />
 Details
 -------
 
-This Android library implements the expand by sliding logic for a top or a bottom view in a two children view composition. It supports ```Android SDK 2.1 (Eclair)``` as minimum. 
+This Android library implements the expand by sliding logic for a top or a bottom view in a two children view composition. That's the default behaviour, but it allows you to set a different View as the expandable one, making this component support multiple views inside it. 
+It supports ```Android SDK 2.1 (Eclair)``` as minimum. 
 
 ExpandablePanel library brings a custom view class called ```ExpandablePanelView``` to the final user. It implements the needed logic for integrating the expandable logic into your own Android application.
 
@@ -198,7 +199,7 @@ Import ExpandablePanel dependency
 Add the next code to your build.gradle project dependencies:
 ```groovy
 dependencies {
-    compile 'com.github.jorgecastilloprz:expandablepanel:1.0.2@aar'
+    compile 'com.github.jorgecastilloprz:expandablepanel:1.0.3@aar'
 }
 ```
 Set the mavenCentral repo into the external build.gradle:
@@ -223,7 +224,7 @@ If you are using Maven, use the following code:
 <dependency>
   <groupId>com.github.jorgecastilloprz</groupId>
   <artifactId>expandablepanel</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <type>aar</type>
 </dependency>
 ```
