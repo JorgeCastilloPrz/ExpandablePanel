@@ -2,4 +2,6 @@
     <string name="app_name">ExpandablePanel</string>
     <string name="tag">ExpandablePanel</string>
     <string name="wrong_number_children_error">Wrong children number. You must insert two children inside ExpandablePanelView in order to make it work.</string>
+    <string name="view_already_expanded">Animation is not happening. The view is already expanded.</string>
+    <string name="view_already_shrunk">Animation is not happening. The view is already shrunk.</string>
 </resources>

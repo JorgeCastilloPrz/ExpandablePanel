@@ -13,7 +13,8 @@
         expandablepanel:completionPercent="0.8"
         expandablepanel:completeExpandAnimationSpeed="150"
         expandablepanel:completeShrinkAnimationSpeed="200"
-        expandablepanel:animableViewId="@+id/topLayout" >
+        expandablepanel:animableViewId="@+id/topLayout"
+        expandablepanel:autoAnimateOnClick="true">
 
         <ImageView
             android:id="@+id/topLayout"

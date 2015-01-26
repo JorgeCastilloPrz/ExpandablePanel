@@ -8,5 +8,6 @@
         <attr name="bounceCount" format="integer" />
         <attr name="invertBehavior" format="boolean" />
         <attr name="animableViewId" format="reference" />
+        <attr name="autoAnimateOnClick" format="boolean" />
     </declare-styleable>
 </resources>

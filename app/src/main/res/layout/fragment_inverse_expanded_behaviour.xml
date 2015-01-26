@@ -15,7 +15,8 @@
         expandablepanel:completeShrinkAnimationSpeed="200"
         expandablepanel:invertBehavior="true"
         expandablepanel:beginExpanded="true"
-        expandablepanel:bounceCount="3">
+        expandablepanel:bounceCount="3"
+        expandablepanel:autoAnimateOnClick="true">
 
         <RelativeLayout
             android:id="@+id/topLayout"

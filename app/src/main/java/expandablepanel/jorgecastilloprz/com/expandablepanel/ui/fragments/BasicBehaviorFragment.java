@@ -63,7 +63,7 @@ public class BasicBehaviorFragment extends Fragment implements ExpandableListene
         expandablePanelView = (ExpandablePanelView) rootView.findViewById(R.id.expandablePanelView);
 
         expandablePanelView.attachExpandableListener(this);
-
+        
         return rootView;
     }
 

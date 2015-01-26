@@ -31,6 +31,7 @@ ExpandablePanel lib allows you to customize the following properties. Feel free 
 * ```expandablepanel:bounceCount```: Use it to set the number of times topView is going to play bounce animation when it begins expanded.
 * ```expandablepanel:invertBehavior```: Use it to invert the panel's behaviour and make bottomView become the expandable one. You can combine it with any other custom attributes. Bounce animation will get inverted too when using this attr.
 * ```expandablepanel:animableViewId```: Use it to assign an animable view using the view identifier if your ```ExpandablePanelView``` contains more than 2 child. This attribute is not mandatory, if you don't use it, first or second child (based on the ```expandablepanel:invertBehavior``` attribute) is going to be used as the animable view.
+* ```expandablepanel:autoAnimateOnClick```: Use this one to enable automatic expanding or shrinking when user clicks on animable view.
 
 Usage
 -----
@@ -50,7 +51,6 @@ Use ```ExpandableListener``` if you want your class to be able to get expandable
 * ```onShrinkStarted```: Dispatched when the user starts shrinking the view.
 * ```onShrinkFinished```: Dispatched when autocomplete shrinking animation is finished.
 * ```onExpandingTouchEvent```: Dispatched meanwhile the user is dragging to expand or shrink the view. This one is very useful if you want to map touch coordinates to your class and be able to use them for creating cool combined animations.
-
 
 Basic Usage
 -----------
@@ -199,7 +199,7 @@ Import ExpandablePanel dependency
 Add the next code to your build.gradle project dependencies:
 ```groovy
 dependencies {
-    compile 'com.github.jorgecastilloprz:expandablepanel:1.0.3@aar'
+    compile 'com.github.jorgecastilloprz:expandablepanel:1.0.4@aar'
 }
 ```
 Set the mavenCentral repo into the external build.gradle:
@@ -224,7 +224,7 @@ If you are using Maven, use the following code:
 <dependency>
   <groupId>com.github.jorgecastilloprz</groupId>
   <artifactId>expandablepanel</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <type>aar</type>
 </dependency>
 ```

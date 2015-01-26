@@ -14,7 +14,8 @@
         expandablepanel:completeExpandAnimationSpeed="150"
         expandablepanel:completeShrinkAnimationSpeed="200"
         expandablepanel:beginExpanded="true"
-        expandablepanel:bounceCount="2">
+        expandablepanel:bounceCount="2"
+        expandablepanel:autoAnimateOnClick="true">
 
         <ImageView
             android:id="@+id/topLayout"

@@ -14,7 +14,8 @@
         expandablepanel:completeExpandAnimationSpeed="150"
         expandablepanel:completeShrinkAnimationSpeed="200"
         expandablepanel:invertBehavior="true"
-        expandablepanel:animableViewId="@+id/bottomLayout" >
+        expandablepanel:animableViewId="@+id/bottomLayout"
+        expandablepanel:autoAnimateOnClick="true">
 
         <RelativeLayout
             android:id="@+id/topLayout"

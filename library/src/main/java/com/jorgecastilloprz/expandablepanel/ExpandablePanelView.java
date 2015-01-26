@@ -37,6 +37,7 @@ public class ExpandablePanelView extends RelativeLayout {
     private int bounceCount;
     private boolean invertBehavior;
     private int animableViewId;
+    private boolean autoAnimateOnClick;
 
     private AnimationController animationController;
 
@@ -70,6 +71,7 @@ public class ExpandablePanelView extends RelativeLayout {
             bounceCount = a.getInteger(R.styleable.ExpandablePanelView_bounceCount, 2);
             invertBehavior = a.getBoolean(R.styleable.ExpandablePanelView_invertBehavior, false);
             animableViewId = a.getResourceId(R.styleable.ExpandablePanelView_animableViewId, DEFAULT_ANIMABLE_VIEW_ID);
+            autoAnimateOnClick = a.getBoolean(R.styleable.ExpandablePanelView_autoAnimateOnClick, false);
 
             a.recycle();
         }
@@ -99,6 +101,7 @@ public class ExpandablePanelView extends RelativeLayout {
             else
                 animationController.setAnimationStrategy(new InverseAnimationStrategy(displayHeight, animableView));
 
+            setInitialClickListenerIfNeeded();
             playBounceAnimationIfNeeded();
         }
     }
@@ -181,6 +184,42 @@ public class ExpandablePanelView extends RelativeLayout {
                 break;
         }
         return true;
+    }
+
+    private void setInitialClickListenerIfNeeded() {
+        if (autoAnimateOnClick) {
+            animableView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (expanded) {
+                        playAutoShrinkAnimation();
+                    }
+                    else {
+                        playAutoExpandAnimation();
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Use this method to enable auto expanding anim
+     */
+    private void playAutoExpandAnimation() {
+        dispatchGenericMovementStarted();
+        animationController.completeAnimationToFullHeight(completeExpandAnimationSpeed);
+        expanded = true;
+        dispatchGenericMovementFinished();
+    }
+
+    /**
+     * Use this method to enable auto shrinking anim
+     */
+    private void playAutoShrinkAnimation() {
+        dispatchGenericMovementStarted();
+        animationController.completeAnimationToInitialHeight(completeExpandAnimationSpeed, initialAnimableViewHeight);
+        expanded = false;
+        dispatchGenericMovementFinished();
     }
 
     //Listener actions
